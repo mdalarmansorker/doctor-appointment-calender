@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $controller = app()->make(Controller::class);
+    return $controller->day_picker(1);
+})->name('home');
+
+
+Route::get('/month/{month}', [Controller::class, 'day_picker'])->where('month', '[1-9]|1[0-2]');
+
