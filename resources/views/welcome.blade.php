@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Support\Facades\DB;
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -81,7 +84,7 @@
 
         </div>
 </header>
-        <main class="mx-8">
+<main class="mx-8">
             <div class="flex justify-around">
                 <div class="text-center text-3xl font-extrabold mb-8 border-black border-solid border-2 rounded-md w-48 py-1 dark:border-white">{{$month}}</div>
                 <button class="btn"><a href="create-appointment">Create Appointment</a></button>
@@ -95,12 +98,46 @@
                 <div class="border-black dark:border-white text-2xl font-extrabold text-center py-4 bg-red-400 text-white rounded-md">Friday</div>
                 <div class="border-black dark:border-white text-2xl font-extrabold text-center py-4 bg-red-400 text-white rounded-md">Saturday</div>
             </div>
-            <div id="calender-date" class="grid grid-cols-7 gap-4">
+            <div id="calender-date" class="grid grid-cols-7 gap-4 z-0">
                 @for($i=1;$i<=$day;$i++)
                     <div class=" border-slate-300 dark:border-white border-2 h-44 rounded-lg"> </div>
                 @endfor
                 @for($j=1;$j<=$no_of_date;$j++)
-                    <div class=" border-black dark:border-white border-2 h-44 rounded-lg p-4">{{$j}}</div>
+                    <div class=" border-black dark:border-white border-2 h-44 rounded-lg p-4 dark:text-white">
+                        {{$j}}<br>
+                        @php
+                            $dateString = "2024-$month_no-$j";
+                            $formattedDate = date('Y-m-d', strtotime($dateString));
+                            $appointmentsForDay = $appointments->where('date', $formattedDate)->sortBy('time');
+                            $count = 1;
+                        @endphp
+                        <div class="mx-auto overflow-y-auto h-32">
+                        @foreach ($appointmentsForDay as $appointment)
+                            <div class="border-t border-gray-300 mt-2">
+                                <!-- Open the modal using ID.showModal() method -->
+                                <button class="btn" onclick="document.getElementById('my_modal_{{$j}}_{{$loop->iteration}}').showModal()">Appointment {{$loop->iteration}}: {{$appointment->time}}</button>
+                                <dialog id="my_modal_{{$j}}_{{$loop->iteration}}" class="modal">
+                                    <div class="modal-box">
+                                        <h3 class="font-bold text-lg">{{$appointment->first_name}} {{$appointment->last_name}}</h3>
+                                        <p class="py-4">
+                                            Email: {{$appointment->email}} <br>
+                                            Gender: {{$appointment->gender}} <br>
+                                            Age: {{$appointment->age}} years <br>
+                                            Date: {{$appointment->date}} <br>
+                                            Time: {{$appointment->time}} <br>
+                                        </p>
+                                        <div class="modal-action">
+                                            <form method="dialog">
+                                                <!-- if there is a button in the form, it will close the modal -->
+                                                <button class="btn" onclick="document.getElementById('my_modal_{{$j}}_{{$loop->iteration}}').close()">Close</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </dialog>
+                            </div>
+                        @endforeach
+                        </div>
+                    </div>
                 @endfor
             </div>
         </main>

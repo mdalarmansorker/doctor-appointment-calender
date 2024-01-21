@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use App\Models\Appointment;
+use Illuminate\Support\Facades\DB;
 
 class Controller extends BaseController
 {
@@ -14,7 +16,8 @@ class Controller extends BaseController
         $firstDay = date('w', strtotime("$year-$month-01"));
         // dd($firstDay);
         $monthName = date('F', mktime(0, 0, 0, $month, 1));
-        $month = date('w', mktime(0, 0, 0, $month, 1));
+        // dd($month, $monthName);
+
         switch ($month) {
             case 1:
                 $no_of_date = 31;
@@ -53,10 +56,41 @@ class Controller extends BaseController
                 $no_of_date = 31;
                 break;
         }
+
+        $firstDayOfMonth = "{$year}-{$month}-01";
+        $lastDayOfMonth = date('Y-m-t', strtotime($firstDayOfMonth));
+        // Query to retrieve appointments within the specified month
+        $appointments = DB::table('appointments')
+        ->whereBetween('date', [$firstDayOfMonth, $lastDayOfMonth])
+        ->orderBy('date')
+        ->orderBy('time')
+        ->get();
         return view('welcome', [
             'month' => $monthName,
+            'month_no' => $month,
             'day' => $firstDay,
             'no_of_date' => $no_of_date,
+            'appointments' => $appointments,
         ]);
+
+    }
+    public function store_appointments(Request $request)
+    {
+        $validatedData = $request->validate([
+            'first_name' => 'required|max:40',
+            'last_name' => 'required|max:40',
+            'email' => 'required|email',
+            'gender' => 'nullable|in:male,female,other',
+            'age' => 'nullable|integer',
+            'date' => 'required|date',
+            'time' => 'required|date_format:H:i',
+        ]);
+
+        // Store data in the database
+        appointment::create($validatedData);
+
+        // Redirect with success message
+        return redirect()->route('create')->with('success', 'Data submitted successfully!');
+
     }
 }
