@@ -15,8 +15,8 @@
         <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body>
-    <header>
+<body>
+<header>
         <div class="navbar bg-base-100">
             <div class="navbar-start">
                 <div class="dropdown">
@@ -81,31 +81,63 @@
 
         </div>
 </header>
-        <main class="mx-8">
-            <div class="flex justify-around">
-                <div class="text-center text-3xl font-extrabold mb-8 border-black border-solid border-2 rounded-md w-48 py-1 dark:border-white">{{$month}}</div>
-                <button class="btn"><a href="create-appointment">Create Appointment</a></button>
-            </div>
-            <div id="calender-date" class="grid grid-cols-7 gap-4 mb-8">
-                <div class="border-black dark:border-white text-2xl font-extrabold text-center py-4 border-black border-2 rounded-md">Sunday</div>
-                <div class="border-black dark:border-white text-2xl font-extrabold text-center py-4 border-black border-2 rounded-md">Monday</div>
-                <div class="border-black dark:border-white text-2xl font-extrabold text-center py-4 border-black border-2 rounded-md">Tuesday</div>
-                <div class="border-black dark:border-white text-2xl font-extrabold text-center py-4 border-black border-2 rounded-md">Wednesday</div>
-                <div class="border-black dark:border-white text-2xl font-extrabold text-center py-4 border-black border-2 rounded-md">Thursday</div>
-                <div class="border-black dark:border-white text-2xl font-extrabold text-center py-4 bg-red-400 text-white rounded-md">Friday</div>
-                <div class="border-black dark:border-white text-2xl font-extrabold text-center py-4 bg-red-400 text-white rounded-md">Saturday</div>
-            </div>
-            <div id="calender-date" class="grid grid-cols-7 gap-4">
-                @for($i=1;$i<=$day;$i++)
-                    <div class=" border-slate-300 dark:border-white border-2 h-44 rounded-lg"> </div>
-                @endfor
-                @for($j=1;$j<=$no_of_date;$j++)
-                    <div class=" border-black dark:border-white border-2 h-44 rounded-lg p-4">{{$j}}</div>
-                @endfor
-            </div>
-        </main>
-        <footer>
+<main>
+<div class="">
+<form class="card-body lg:w-[50%] mx-auto" action="" method="POST">
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">First Name</span>
+        </label>
+        <input type="text" name="first_name" placeholder="First Name" class="input input-bordered" maxlength="40" required />
+    </div>
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">Last Name</span>
+        </label>
+        <input type="text" name="last_name" placeholder="Last Name" class="input input-bordered" maxlength="40" required />
+    </div>
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">Email</span>
+        </label>
+        <input type="email" name="email" placeholder="Email" class="input input-bordered" required />
+    </div>
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">Gender</span>
+        </label>
+        <select name="gender" class="select select-bordered">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">Age</span>
+        </label>
+        <input type="number" name="age" placeholder="Age" class="input input-bordered" />
+    </div>
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">Date</span>
+        </label>
+        <input type="date" name="date" class="input input-bordered" required />
+    </div>
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">Time</span>
+        </label>
+        <input type="time" name="time" class="input input-bordered" required />
+    </div>
+    <div class="form-control mt-6">
+        <button class="btn btn-primary">Submit</button>
+    </div>
+</form>
+</div>
+</main>
+<footer>
 
-        </footer>
-    </body>
+</footer>
+</body>
 </html>
