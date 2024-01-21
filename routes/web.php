@@ -21,3 +21,7 @@ Route::get('/', function () {
 
 Route::get('/month/{month}', [Controller::class, 'day_picker'])->where('month', '[1-9]|1[0-2]');
 
+// Create appointment
+Route::get('/create-appointment', function(){
+    return view('create_appointment');
+})->name('create');
