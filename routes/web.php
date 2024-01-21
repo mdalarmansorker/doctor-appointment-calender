@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $controller = app()->make(Controller::class);
-    return $controller->day_picker(1);
+    return $controller->day_picker(date('m'));
 })->name('home');
 
 
@@ -25,3 +25,10 @@ Route::get('/month/{month}', [Controller::class, 'day_picker'])->where('month', 
 Route::get('/create-appointment', function(){
     return view('create_appointment');
 })->name('create');
+Route::get('/month/create-appointment', function(){
+    return view('create_appointment');
+})->name('create');
+
+// Store appointments data
+Route::post('/store-appointment', [Controller::class, 'store_appointments'])->name('store_appointments');
+

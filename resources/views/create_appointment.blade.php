@@ -83,7 +83,16 @@
 </header>
 <main>
 <div class="">
-<form class="card-body lg:w-[50%] mx-auto" action="" method="POST">
+@if(session('success'))
+    <div x-data="{ show: true }" x-show="show" class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mt-6" role="alert">
+        <p class="font-bold">Success</p>
+        <p>{{ session('success') }}</p>
+        <p class="cursor-pointer" @click="show = false">&times;</p>
+    </div>
+@endif
+
+<form class="card-body lg:w-[50%] mx-auto" action="{{ route('store_appointments') }}" method="POST">
+@csrf
     <div class="form-control">
         <label class="label">
             <span class="label-text">First Name</span>
@@ -131,7 +140,7 @@
         <input type="time" name="time" class="input input-bordered" required />
     </div>
     <div class="form-control mt-6">
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" type="submit">Submit</button>
     </div>
 </form>
 </div>
