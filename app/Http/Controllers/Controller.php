@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
-    public function day_picker($month){
+    public function day_picker($month, $user_id){
         $year = 2024;
         $firstDay = date('w', strtotime("$year-$month-01"));
         // dd($firstDay);
@@ -61,6 +61,7 @@ class Controller extends BaseController
         $lastDayOfMonth = date('Y-m-t', strtotime($firstDayOfMonth));
         // Query to retrieve appointments within the specified month
         $appointments = DB::table('appointments')
+        ->where('user_id', $user_id)
         ->whereBetween('date', [$firstDayOfMonth, $lastDayOfMonth])
         ->orderBy('date')
         ->orderBy('time')
@@ -77,6 +78,7 @@ class Controller extends BaseController
     public function store_appointments(Request $request)
     {
         $validatedData = $request->validate([
+            'user_id' => 'required',
             'first_name' => 'required|max:40',
             'last_name' => 'required|max:40',
             'email' => 'required|email',

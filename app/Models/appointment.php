@@ -18,5 +18,10 @@ class appointment extends Model
         'age',
         'date',
         'time',
+        'user_id', //foreign key from users table
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
