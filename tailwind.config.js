@@ -3,6 +3,7 @@ module.exports = {
     theme: {
       extend: {},
     },
+    darkMode: 'class',
     plugins: [],
     daisyui: {
         themes: ["light", "dark", "nord"],
@@ -10,4 +11,5 @@ module.exports = {
       scrollBehavior: {
         smooth: 'smooth',
       },
+     
   }
