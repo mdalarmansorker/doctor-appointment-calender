@@ -97,11 +97,11 @@
             </div>
             <div id="calender-date" class="grid grid-cols-7 gap-1 lg:gap-4 z-0">
                 @for($i=1;$i<=$day;$i++)
-                    <div class=" border-2 h-28 lg:h-44 rounded-lg"> </div>
+                    <div class="border-2 h-28 lg:h-44 rounded-lg border-dotted"> </div>
                 @endfor
                 @for($j=1;$j<=$no_of_date;$j++)
                     <div class="border-2 h-28 lg:h-44 rounded-lg lg:p-4">
-                        {{$j}}<br>
+                        <span class="font-bold">{{$j}}</span><br>
                         @php
                             $dateString = "2024-$month_no-$j";
                             $formattedDate = date('Y-m-d', strtotime($dateString));
