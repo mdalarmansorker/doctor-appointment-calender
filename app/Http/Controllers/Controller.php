@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use App\Models\Appointment;
+use App\Models\appointment;
 use Illuminate\Support\Facades\DB;
 
 class Controller extends BaseController
