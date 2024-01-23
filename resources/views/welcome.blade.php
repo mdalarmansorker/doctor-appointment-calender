@@ -71,7 +71,7 @@
                     </li>
                 </ul>
                 </div>
-                <a class="btn btn-ghost text-xl" href="/">Doctor's Appointment Calender</a>
+                <a class="btn btn-ghost text-xl" href="/">Doctor's Appointment Calendar</a>
                 
             </div>
             <div class="navbar-end hidden lg:flex">
@@ -131,7 +131,7 @@
                 <div class="text-center text-3xl font-extrabold mb-8 border-solid border-2 rounded-md w-48 py-1">{{$month}}</div>
                 <button class="btn font-bold"><a href="{{route('create')}}">Create Appointment</a></button>
             </div>
-            <div id="calender-date" class="grid grid-cols-7 gap-1 lg:gap-4 mb-8">
+            <div id="Calendar-date" class="grid grid-cols-7 gap-1 lg:gap-4 mb-8">
                 <div class="text-2xl font-extrabold text-center py-4 overflow-x-auto border-2 rounded-md">Sunday</div>
                 <div class="text-2xl font-extrabold text-center py-4 overflow-x-auto border-2 rounded-md">Monday</div>
                 <div class="text-2xl font-extrabold text-center py-4 overflow-x-auto border-2 rounded-md">Tuesday</div>
@@ -140,7 +140,7 @@
                 <div class="text-2xl font-extrabold text-center py-4 overflow-x-auto bg-red-400 text-white rounded-md">Friday</div>
                 <div class="text-2xl font-extrabold text-center py-4 overflow-x-auto bg-red-400 text-white rounded-md">Saturday</div>
             </div>
-            <div id="calender-date" class="grid grid-cols-7 gap-1 lg:gap-4 z-0">
+            <div id="Calendar-date" class="grid grid-cols-7 gap-1 lg:gap-4 z-0">
                 @for($i=1;$i<=$day;$i++)
                     <div class="border-2 h-28 lg:h-44 rounded-lg border-dotted"> </div>
                 @endfor
