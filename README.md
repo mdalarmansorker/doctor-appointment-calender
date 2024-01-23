@@ -1,4 +1,4 @@
-Doctor's Appointment Calender<br>
+Doctor's Appointment Calendar<br>
 This website is built only for one user so I don't use authentication for it. For multiple user, it can be updated.
 I used Tailwind and DaisyUI with Laravel to build this website. Though I made it responsive but it can create some problems in the small devices as the calendar has 7 rows. For linked tailwind and DaisyUI using CDN, so no need to install tailwind or DaisyUI for running this project. To run this project for the first time, need to create an .env file then update the database name and then use the command "php artisan migrate" and to see the output of this project you need to run "php artisan serve". 
 <be>
