@@ -48,7 +48,7 @@
                     </li>
                 </ul>
                 </div>
-                <a class="btn btn-ghost text-xl" href="/">Doctor's Appointment Calender</a>
+                <a class="btn btn-ghost text-xl" href="/">Doctor's Appointment Calendar</a>
             </div>
             <div class="navbar-end hidden lg:flex">
                 <ul class="menu menu-horizontal px-1">
